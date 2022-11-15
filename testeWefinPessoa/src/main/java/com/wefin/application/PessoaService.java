@@ -1,11 +1,13 @@
 package com.wefin.application;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.wefin.application.exception.PessoaJaCadastradaException;
+import com.wefin.application.exception.PessoaNaoEncontradaException;
 import com.wefin.domain.Pessoa;
 import com.wefin.domain.TipoIdentificador;
 import com.wefin.infra.repository.PessoaRepository;
@@ -21,6 +23,11 @@ public class PessoaService {
 	
 	private final PessoaRepository pessoaRepository;
 
+	public List<Pessoa> listar() {
+		return pessoaRepository.findAll();
+	}
+	
+	
 	@Transactional
 	public Pessoa salvar(Pessoa pessoa) {
 		
@@ -49,6 +56,21 @@ public class PessoaService {
 		}
 		
 		return tipoIdentificador;
+	}
+
+
+	public Pessoa pegaPessoaPorIdentificador(String identificador) {
+		
+		return pessoaRepository.findByIdentificador(identificador)
+			.orElseThrow(() -> new PessoaNaoEncontradaException(String.format("Pessoa com identificador %s não existe", identificador)));
+		
+	}
+	
+	public Pessoa pegaPessoaPorId(Long id) {
+		
+		return pessoaRepository.findById(id)
+			.orElseThrow(() -> new PessoaNaoEncontradaException(id));
+		
 	}
 	
 }
