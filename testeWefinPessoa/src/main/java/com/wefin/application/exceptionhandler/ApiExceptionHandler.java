@@ -4,8 +4,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.validation.GroupDefinitionException;
-
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.http.HttpHeaders;
@@ -59,8 +57,6 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	    
 	    return handleExceptionInternal(ex, problem, headers, status, request);
 	}
-
-		
 	
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<Object> handleUncaught(Exception ex, WebRequest request) {

@@ -7,7 +7,6 @@ import org.hibernate.validator.spi.group.DefaultGroupSequenceProvider;
 
 import com.wefin.application.groups.PessoaFisica;
 import com.wefin.application.groups.PessoaJuridica;
-import com.wefin.application.representation.PessoaRequest;
 import com.wefin.domain.Pessoa;
 
 public class PessoaGroupSequenceProvider implements DefaultGroupSequenceProvider<Pessoa>{

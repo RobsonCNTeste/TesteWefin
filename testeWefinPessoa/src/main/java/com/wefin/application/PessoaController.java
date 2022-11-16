@@ -51,7 +51,7 @@ public class PessoaController implements PessoaControllerOpenApi{
                 .buildAndExpand(pessoa.getId())
                 .toUri();
         
-		return ResponseEntity.created(headerLocation).build();
+		return ResponseEntity.created(headerLocation).body(pessoa);
 		
 	}
 	
@@ -63,7 +63,6 @@ public class PessoaController implements PessoaControllerOpenApi{
 		return ResponseEntity.ok(pessoa);
 		
 	}
-	
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<?> pegaPessoaPorId(@PathVariable Long id) {
